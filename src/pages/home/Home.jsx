@@ -20,16 +20,7 @@ const Home = () => {
     if (data) {
       setTodos(data)
     }
-    console.log("getItemsRuns")
   }, []);
-
-  // useEffect(() => {
-  //   console.log(todos)
-  //   localStorage.setItem("beyondbrainTodo", JSON.stringify(todos))
-  //   console.log("setItemsRuns")
-  // }, [todos]);
-
-
 
   const openNotebook = () => {
     setIsOpenBook(!isOpenBook);
@@ -55,8 +46,8 @@ const Home = () => {
       title: e.target[0].value,
       subTitle: e.target[1].value,
       todo: e.target[2].value,
-      day: 24,
-      month: 3,
+      day,
+      month,
       year,
       id
     }
@@ -70,7 +61,6 @@ const Home = () => {
   }
 
   const openEditForm = (index) => {
-    console.log(index)
     setIsEditOpen(true);
     const data = todos.filter((item, idx) => item.id == index)
     setTodo(data[0].todo)
@@ -99,7 +89,6 @@ const Home = () => {
       id: editDataIndex
     }
     const item = JSON.parse(localStorage.getItem("beyondbrainTodo"));
-    console.log(item)
     setTodos(() => {
       const newTodo = item.map((i) => {
         if (i.id == editDataIndex) {
@@ -108,7 +97,6 @@ const Home = () => {
           return i;
         }
       })
-      console.log(newTodo)
 
       localStorage.setItem("beyondbrainTodo", JSON.stringify(newTodo));
       return newTodo;
